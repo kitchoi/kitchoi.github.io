@@ -19,8 +19,8 @@
 	      {% endif %}
 	    <a href="/index.html">About</a></li>
 	    {% for category in site.categories %}
-	    {% capture caturl %}{{ category[0] | prepend:'"/' | append:'.html"'}}{% endcapture %}
-	    {% if page.url == capurl or page.categories contains category[0] %}
+	    {% capture caturl %}/{{ category[0] }}.html{% endcapture %}
+	    {% if page.url == caturl or page.categories contains category[0] %}
 	    <li class="active">
 	      {% else %}
 	    <li>
