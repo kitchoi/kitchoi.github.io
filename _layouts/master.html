@@ -4,6 +4,7 @@
     <title>{{ page.title }} :: Kit-Yan Choi :: </title>
     <link rel="stylesheet" href="/css/bootstrap.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/syntax.css">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.js"></script>
     <style>
@@ -24,7 +25,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="#">Kit-Yan Choi</a>
+	  <a class="navbar-brand" href="/">Kit-Yan Choi</a>
 	</div>
 	
 	<!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,6 +43,18 @@
 	    <li>
 	      {% endif %}
 	    <a href="/projects.html">Projects</a></li>
+	    {% if page.url == "/programming.html" or page.categories[0] == "programming" %}
+	    <li class="active">
+	      {% else %}
+	    <li>
+	      {% endif %}
+	    <a href="/programming.html">Programming</a></li>
+	    {% if page.url == "/recipes.html" or page.categories[0] == "recipes" %}
+	    <li class="active">
+	      {% else %}
+	    <li>
+	      {% endif %}
+	    <a href="/recipes.html">Recipes</a></li>
 	    {% if page.is_blog %}
 	    <li class="dropdown active">
 	      {% else %}
@@ -49,8 +62,9 @@
 	      {% endif %}
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blogs <b class="caret"></b></a>
               <ul class="dropdown-menu">
+		<li><a href='/blogs.html'>All</a></li>
 		{% for category in site.categories %}
-		<li><a href='/{{ category[0] }}'>{{ category[0] | capitalize }}</a></li>
+		<li><a href='/{{ category[0] }}.html'>{{ category[0] | capitalize }}</a></li>
 		{% endfor %}
               </ul>
             </li>
