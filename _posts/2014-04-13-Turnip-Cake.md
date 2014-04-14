@@ -5,6 +5,7 @@ category: recipes
 
 {{ page.title }}
 ===
+{{ page.date | date: "%e %B %Y" }}
 
 Ingredients:
 (Modified from [Christine's recipes](http://en.christinesrecipes.com/2009/01/chinese-new-year-turnip-cake.html?m=1))
