@@ -1,22 +1,21 @@
 ---
-layout: master
+layout: post
 category: recipes
 ---
 
-{{ page.title }}
-===
-{{ page.date | date: "%e %B %Y" }}
+Size of container/cake: 1.25L
+Serve 4-5 people
 
 Ingredients:
 (Modified from [Christine's recipes](http://en.christinesrecipes.com/2009/01/chinese-new-year-turnip-cake.html?m=1))
 <!--start-excerpt-->
 - 1 kg Turnip/Daikon (weight after grating)
-- 170gm rice flour<!--end-excerpt-->
+- 170gm rice flour
 - 4 Tbsp corn starch
-- 2 Chinese sausages
+- 2 Chinese sausages<!--end-excerpt-->
 - 5 slices of western bacon or ideally chinese bacon
 - 2 Tbsp of dried shrimps
-- 1 clove of spring onion
+- 1 clove of spring onion or shallot
 - 3/4 cup of chicken broth
 - white pepper to taste
 
@@ -41,6 +40,7 @@ Methods:
 9. Cut the cake into slices and fry them.  Serve with hoisin sauce or osyter sauce or soy sauce.
 
 
-
+Note:
+Adding too much onion or meat may stop the batter from blending together to make a smooth and strong cake.
 
 

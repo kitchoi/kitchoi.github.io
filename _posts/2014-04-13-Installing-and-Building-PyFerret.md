@@ -1,22 +1,18 @@
 ---
-layout: master
+layout: post
 category: Programming
 ---
 
-{{ page.title}}
-===
-{{ page.date | date: "%e %B %Y" }}
-
-I can use NumPy and SciPy for most of the task in my work, except for regridding.  Writing my own regridding function is tedious and time-consuming and I would likely make mistakes that can be avoided by using existing packages.  My first work-around was to use the [Python spherical harmonic transform module](https://code.google.com/p/pyspharm/) since it is a python package that is pretty easy to install and to use.  It has served me well until at certain point the ripple pattern innate to the transformation starts to hamper the quality of my analysis. <!--start-excerpt-->
+I can use NumPy and SciPy for most of the tasks in my work, except for regridding.  Writing my own regridding function is tedious and time-consuming and I would likely make mistakes that can be avoided by using existing packages.  My first work-around was to use the [Python spherical harmonic transform module](https://code.google.com/p/pyspharm/) since it is a python package that is pretty easy to install and to use.  It has served me well until at certain point the ripple pattern innate to the transformation starts to hamper the quality of my analysis. <!--start-excerpt-->
  I needed regridding functions that can conserve area averages and do not generate ripples.  The [Earth System Modeling Framework (ESMF)](http://www.earthsystemmodeling.org/) and its [Python interface (ESMP)] (https://earthsystemcog.org/projects/esmp/) were the next things I tried.  Unfortunately there were a lot of overhead in order to use them.  Fortunately, there are other Python-based scientific packages such as UV-CDAT, [PyFerret](http://ferret.pmel.noaa.gov/Ferret/documentation/pyferret) and Community Surface Dynamics Modeling System (CSDMS) that have used ESMF and ESMP.  I have used Ferret and UV-CDAT before and I decided that I would try to install PyFerret and use it as an external package in my own library.  Before installing PyFerret, we need to install ESMF and ESMP.
 <!--end-excerpt-->  The challenging bits came after installing these two though.
 
 Download ESMF and ESMP
----
+-------------------------------
 You can download the ESMF and ESMP altogether from the [Download and Releases](https://earthsystemcog.org/projects/esmp/releases) page of ESMP.  The following procedures were performed with the ESMF_6_2_0_ESMP_01 version.
 
 Install ESMF
----
+-------------------------------
 ESMF does provide a pretty good user guide ([version 6.2.0](http://www.earthsystemmodeling.org/esmf_releases/non_public/ESMF_6_2_0/ESMF_usrdoc/) and [version 6.3.0](http://www.earthsystemmodeling.org/esmf_releases/public/ESMF_6_3_0r/ESMF_usrdoc/)).  The steps I did to install ESMF:
 
 **1. Extract the tarball** into /path/to/esmp.ESMF_6_2_0_ESMP_01
@@ -104,7 +100,7 @@ If you are using other operating systems such as Ubuntu, the packages names can 
 
 **3. Modify ~/Downloads/pyferret-1.0.0-source/site_specific.mk**
 
-Depending on your setup, change the followings:
+Depending on your setup and preferences, change the followings:
 - DIR_PREFIX 	    = $(HOME)/Downloads/pyferret-1.0.0-source
 - BUILDTYPE	        = x86_64-linux
 - PYTHON_EXE	    = python2.7
@@ -114,7 +110,6 @@ Depending on your setup, change the followings:
 - NETCDF4_DIR	    = /usr
 - JAVA_HOME	        = /usr/lib/jvm/java-openjdk
 
-Notice that INSTALL_FER_DIR is changed from the default $(FER_DIR) because I did not have the root privilege on my workstation so I had to install Ferret under my home directory.
 
 **4. Modify ~/Downloads/pyferret-1.0.0-source/external_functions/ef_utility/site_specific.mk**
 
