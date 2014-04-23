@@ -29,16 +29,15 @@ Pros and Cons
 
 **1. Installation - PySpHarm wins**
 
-For PyFerret, the major drawback is the fact that it is not quite trivial to get it installed while for PySpHarm it is simple (See [documentation](http://pyspharm.googlecode.com/svn/trunk/html/index.html))
+For PyFerret, the major drawback is the fact that it is not quite trivial to install (see my previous [post]({% post_url 2014-04-13-Installing-and-Building-PyFerret %})) while for PySpHarm it is simple (see its [documentation](http://pyspharm.googlecode.com/svn/trunk/html/index.html)).
 
 **2. Ripple patterns arise going from low to high resolution - PyFerret wins**
 
-Gibbs fringes are inevitable for spectral harmonics tranforms yet they can be minimised by applying filters (See [Navarra 1994](http://journals.ametsoc.org/doi/abs/10.1175/1520-0442%281994%29007%3C1169%3AROTGOI%3E2.0.CO%3B2) and references therein)
+Gibbs fringes are inevitable for spectral harmonics tranforms yet they can be minimised by applying filters (See [Navarra 1994](http://journals.ametsoc.org/doi/abs/10.1175/1520-0442%281994%29007%3C1169%3AROTGOI%3E2.0.CO%3B2) and references therein).  In contrast, PyFerret provides various regridding methods: linear interpolation, patch recovery by taking least squeares fit of the surrounding surface patches and conservative methods.  These methods do not generate Gibbs ripples.
 
 **3. Speed - PyFerret wins**
 
 The computational complexity of the spherical harmonics transform is O(N^3) for cut-off frequency N.  Some algorithms allow for a running time of O(N^2logN).  I am not sure what the actual algorithm is used by PySpHarm but in my experience it is far slower than PyFerret in most cases.  The performance difference is more obvious when only a region of the globe needs regridding.
-(Note: Various regridding methods can be chosen in PyFerret: linear interpolation, patch recovery by taking least squeares fit of the surrounding surface patches and conservative methods.)
 
 
 Implementing PyFerret for regridding
