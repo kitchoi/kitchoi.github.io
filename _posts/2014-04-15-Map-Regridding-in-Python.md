@@ -31,9 +31,9 @@ Pros and Cons
 
 For PyFerret, the major drawback is the fact that it is not quite trivial to get it installed while for PySpHarm it is simple (See [documentation](http://pyspharm.googlecode.com/svn/trunk/html/index.html))
 
-**2. Gibbs fringes from low to high resolution - PyFerret wins**
+**2. Ripple patterns arise going from low to high resolution - PyFerret wins**
 
-Gibbs fringes are unavoidable for spectral grids yet the impact can be minimised (See [Navarra 1994](http://journals.ametsoc.org/doi/abs/10.1175/1520-0442%281994%29007%3C1169%3AROTGOI%3E2.0.CO%3B2) and references therein)
+Gibbs fringes are inevitable for spectral harmonics tranforms yet they can be minimised by applying filters (See [Navarra 1994](http://journals.ametsoc.org/doi/abs/10.1175/1520-0442%281994%29007%3C1169%3AROTGOI%3E2.0.CO%3B2) and references therein)
 
 **3. Speed - PyFerret wins**
 
