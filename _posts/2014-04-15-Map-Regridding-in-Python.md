@@ -3,7 +3,7 @@ layout: post
 category: programming
 ---
 
-<!--start-excerpt-->In most cases, both PyFerret and the Python spherical harmonic module (hereafter PySpHarm) do a pretty good job regridding geographical 2D data and preserve area averages.  Here are examples going from higher resolutions to lower resolutions and vice versa. <!--end-excerpt-->
+<!--start-excerpt-->My goal here is to regrid geographical data onto another lat-lon grid, by calling on a function that accepts and returns numpy arrays.  Any library or module needed will be unloaded after the process.  I have tested PyFerret and the Python spherical harmonic module (hereafter PySpHarm) and presented here how to implement PyFerret for regridding purpose. <!--end-excerpt-->  In most cases, both PyFerret and the Python and PySpHarm do a pretty good job regridding geographical 2D data and preserve area averages.  Here are examples going from higher resolutions to lower resolutions and vice versa.
 
 <div class="row">
   <div class="col-sm-6 col-md-4">
@@ -29,11 +29,11 @@ Pros and Cons
 
 **1. Installation - PySpHarm wins**
 
-For PyFerret, the major drawback is the fact that it is not quite trivial to install (see my previous [post]({% post_url 2014-04-13-Installing-and-Building-PyFerret %})) while for PySpHarm it is simple (see its [documentation](http://pyspharm.googlecode.com/svn/trunk/html/index.html)).
+For PyFerret, the major drawback is the fact that it is not quite trivial to install while for PySpHarm it is simple (see its [documentation](http://pyspharm.googlecode.com/svn/trunk/html/index.html)).
 
-**2. Ripple patterns arise going from low to high resolution - PyFerret wins**
+**2. Annoying ripple patterns  - PyFerret wins**
 
-Gibbs fringes are inevitable for spectral harmonics tranforms yet they can be minimised by applying filters (See [Navarra 1994](http://journals.ametsoc.org/doi/abs/10.1175/1520-0442%281994%29007%3C1169%3AROTGOI%3E2.0.CO%3B2) and references therein).  In contrast, PyFerret provides various regridding methods: linear interpolation, patch recovery by taking least squeares fit of the surrounding surface patches and conservative methods.  These methods do not generate Gibbs ripples.
+[Gibbs fringes](http://en.wikipedia.org/wiki/Gibbs_phenomenon) are inevitable for spectral harmonics tranforms although they can be minimised by applying filters (See [Navarra 1994](http://journals.ametsoc.org/doi/abs/10.1175/1520-0442%281994%29007%3C1169%3AROTGOI%3E2.0.CO%3B2) and references therein).  In contrast, PyFerret provides various regridding methods: linear interpolation, patch recovery by taking least squeares fit of the surrounding surface patches and conservative methods.  These methods do not generate Gibbs ripples.
 
 **3. Speed - PyFerret wins**
 
@@ -43,6 +43,10 @@ The computational complexity of the spherical harmonics transform is O(N^3) for 
 Implementing PyFerret for regridding
 ---
 
+**0. Preconditions**
+
+Supposedly you have PyFerret module installed on your machine such that you can import pyferret from Python.  If you have not done so, you may want to refer to my previous [post]({% post_url 2014-04-13-Installing-and-Building-PyFerret %}).  And of course you should have NumPy installed as well.
+ 
 **1. Preparing input for pyferret**
 
 {% highlight python %}
