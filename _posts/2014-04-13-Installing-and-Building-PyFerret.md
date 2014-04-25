@@ -31,7 +31,7 @@ sudo yum install gcc-c++
 
 **3. Set environment variables.**
 
-Assuming you are at the source code directory (you should find the LICENSE, README, makefule etc.)
+Assuming you are at the source code directory (you should find the LICENSE, README, makefile etc.)
 {% highlight bash %}
 export ESMF_DIR=$PWD
 {% endhighlight %}
@@ -82,7 +82,7 @@ export PYTHONPATH=/path/to/esmp.ESMF_6_2_0_ESMP_01:$PYTHONPATH
 
 Download and Install PyFerret
 ---
-You can download PyFerret from [here](http://ferret.pmel.noaa.gov/Ferret/downloads/pyferret/).  If you are lucky, you may use the binaries provided then you may very much skip the pain of building it from the source code.  I wasn't and here were the steps I followed.  The version I used was pyferret-1.0.0.
+You can download PyFerret from [here](http://ferret.pmel.noaa.gov/Ferret/downloads/pyferret/).  If you are lucky, you may use the binaries provided then you may very much skip the pain of building it from the source code.  I wasn't and here were the steps I followed.  The version I used was pyferret-1.0.0.  *(Update: I tested with pyferret-1.0.2 too.)*
 
 **1. Extracting tarball**
 
@@ -90,9 +90,9 @@ Let's say we have extracted the tarball into *$HOME/Downloads/pyferret-1.0.0-sou
 
 **2. Install development packages.**
 
-On Fedora, I needed netcdf, hdf5, cairo and java-openjdk development packages.
+On Fedora, I needed netcdf, hdf5, cairo, java-openjdk and pango development packages.
 {% highlight bash %}
-sudo yum install netcdf-fortran-devel cairo-devel java-openjdk-devel
+sudo yum install netcdf-fortran-devel cairo-devel java-1.7.0-openjdk-devel pango-devel
 {% endhighlight %}
 
 If you are using other operating systems such as Ubuntu, the packages names can be found on [Installing or Building PyFerret](http://ferret.pmel.noaa.gov/Ferret/documentation/pyferret/build-install/)
@@ -125,10 +125,10 @@ I couldn't compile until I made the following changes.  This is likely to be a h
 
 In *~/Downloads/pyferret-1.0.0-source/fer/common/EF_mem_subsc.cmn* **and** *~/Downloads/pyferret-1.0.0-source/external_functions/ef_utility/ferret_cmn/EF_mem_subsc.cmn*
 {% highlight fortran %}
-
-!DEC$ ATTRIBUTES EXTERN :: /FERRET_EF_MEM_SUBSC/       !I added this line
 	!EXTERNAL FERRET_EF_MEM_SUBSC                  !I commented this
 {% endhighlight %}
+
+*Update: With pyferret-1.0.2 version, the first file is fixed but not the second file.*
 
 **6. Make install**
 
