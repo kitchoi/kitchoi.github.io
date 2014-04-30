@@ -1,74 +1,27 @@
----
-layout: post
-category: programming
----
+# The MIT License (MIT)
 
-<!--start-excerpt-->My goal here is to regrid geographical data onto another lat-lon grid.  Any library or module needed will be unloaded after the process.  I have tested PyFerret and the Python spherical harmonic module (hereafter PySpHarm) and presented here how to implement PyFerret for regridding purpose. <!--end-excerpt-->  In most cases, both PyFerret and the Python and PySpHarm do a pretty good job regridding geographical 2D data and preserve area averages.  Here are examples going from higher resolutions to lower resolutions and vice versa.
+# Copyright (c) 2004, Kit-Yan Choi
 
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" src="/assets/images/regridding_py_lower_crop.png">
-      <div class="caption">
-        From higher resolutions (0.66 degree longitude x 0.5 degree latitude) to lower resolutions (2.66 degree longitude x 2 degree latitude)
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img data-src="holder.js/300x200" src="/assets/images/regridding_py_higher_crop.png">
-      <div class="caption">
-        From lower resolutions (2.66 degree longitude x 2 degree latitude) to higher resolutions (0.33 degree longitude x 0.25 degree latitude)
-      </div>
-    </div>
-  </div>
-</div>
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
 
-Pros and Cons
----
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
 
-**1. Installation - PySpHarm wins**
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
-For PyFerret, the major drawback is the fact that it is not quite trivial to install while for PySpHarm it is simple (see its [documentation](http://pyspharm.googlecode.com/svn/trunk/html/index.html)).
+from functools import wraps
 
-**2. Annoying ripple patterns for PySpHarm  - PyFerret wins**
-
-[Gibbs fringes](http://en.wikipedia.org/wiki/Gibbs_phenomenon) are inevitable for spectral harmonics tranforms although they can be minimised by applying filters (See [Navarra 1994](http://journals.ametsoc.org/doi/abs/10.1175/1520-0442%281994%29007%3C1169%3AROTGOI%3E2.0.CO%3B2) and references therein).  In contrast, PyFerret provides various regridding methods: linear interpolation, patch recovery by taking least squeares fit of the surrounding surface patches and conservative methods.  These methods do not generate Gibbs ripples.
-
-**3. Speed - PyFerret wins**
-
-The computational complexity of the spherical harmonics transform is O(N^3) for cut-off frequency N.  Some algorithms allow for a running time of O(N^2logN).  I am not sure what the actual algorithm is used by PySpHarm but in my experience it is far slower than PyFerret in most cases.  The performance difference is more obvious when only a region of the globe needs regridding.
-
-
-Implementing PyFerret for regridding
----
-
-**You may download the script [here](/assets/scripts/pyferret_regrid.py)**.  Below I present slightly more details for thoughts.
-
-**0. Preconditions**
-
-- You have installed the PyFerret module and are able to <code class="python">import pyferret</code>.  If not, you may refer to my previous [post on installing and building PyFerret]({% post_url 2014-04-13-Installing-and-Building-PyFerret %})
-- You should have NumPy installed as well.
-
-**1. Main action**
-
-Using PyFerret still requires some knowledge of Ferret commands.  Basically my python function here is to stitch the Ferret commands together for regridding.
-
-In Ferret, to regrid a variable <code>SOURCE</code> to the lat-lon grid of <code>DEST</code> you would write:
-<code>LET RESULT = SOURCE\[GXY=DEST\]</code>
-
-This is included in the function <code>regrid_once_primitive</code> below.
-
-What *have* been taken care of here:
-- The data returned from Ferret may (usually) have a different axis order than the input's.  Reorder the dimensions
-- Instead of specifying the axis type (T/X/Y/Z) by the users, units of the dimensions (usually available) are used for assigning the axis types.  If the unit is not recognised, a normal axis is assigned
-- Tranformation method can be specified
-
-What *have not* been taken care of:
-- Regridding on the time axis is not implemented yet
--
-
-{% highlightscroll python %}
 def regrid_once_primitive(var,ref_var,axis,
                           verbose=False,prerun=None,transform='@ave'):
     ''' Now only deal with regridding without the time axis
@@ -81,7 +34,7 @@ def regrid_once_primitive(var,ref_var,axis,
     axis      - the axis for regridding, it can be any combination of X/Y/Z, e.g. 'XY','Y','Z'
     verbose   - whether to print progress (default: False)
     prerun    - a list of strings as commands to be run at the start (default: None)
-    transform - @ave (Conserve area average),@lin (Linear interpolation), @asn (blind association)
+    transform - @ave (Conserve area average),@lin (Linear interpolation),...see Ferret doc
     Return:
     a dictionary 
     '''
@@ -176,11 +129,6 @@ def regrid_once_primitive(var,ref_var,axis,
             print "PyFerret failed to stop."
     return result
 
-{% endhighlightscroll %}
-
-For some reasons when pyferret is stopped, there is still memory of the previous data grid being kept so that the next time pyferret is started, dimensions of the same names used before (e.g. latitude, longitude) cannot be recognised.  This might be associated with one of the [known issues](http://ferret.pmel.noaa.gov/Ferret/documentation/pyferret/known-issues) of PyFerret.  To work around this, I use the python multiprocessing library to run the PyFerret on a separate process so that each time when the function is finished the process is killed and the memory associated is freed (I think so?).
-
-{% highlightscroll python %}
 # This decorator is a work around needed for
 # calling the regrid function multiple times
 def run_worker(f):
@@ -198,11 +146,6 @@ def run_worker(f):
 # This is the regrid function to be called
 # And it will be run as a stand-alone process that terminates after each call
 regrid = run_worker(regrid_once_primitive)
-
-{% endhighlightscroll %}
-**2. Interfaces for adding and extracting data to/from PyFerret**
-
-{% highlightscroll python %}
 
 def Num2Fer(data,coords,dimunits,
             varname="UNKNOWN",data_units=None,cartesian_axes=None,dimnames=None,missing_value=None):
@@ -296,48 +239,7 @@ def Num2Fer(data,coords,dimunits,
                             for cax in cartesian_axes ]
     return fer_var
 
-{% endhighlightscroll %}
 
-The following function does not do much.  It filters singlet dimension in the Ferret variable and acts as the inverse function of <code>Num2Fer</code>.
-
-{% highlightscroll python %}
-def Fer2Num(var):
-    ''' Filter the dictionary returned by pyferret.getdata
-    PyFerret usually returns data with extra singlet dimension
-    Need to filter those
-    Input:
-    var       - a dictionary returned by pyferret.getdata
-    Return:
-    A dictionary with the following items
-    data      - a numpy ndarray
-    varname   - the name of the variable
-    coords    - a list of numpy ndarrays for the dimensions
-    dimunits  - a list of strings, the units for the dimensions
-    dimnames  - a list of strings, the names for the dimensions
-    '''
-    import numpy
-    results = {}
-    results['coords'] = [ ax for ax in var['axis_coords']
-                         if ax is not None]
-    if var['axis_names'] is not None:
-        results['dimnames'] = [ var['axis_names'][i] 
-                                for i in range(len(var['axis_names']))
-                                if var['axis_coords'][i] is not None ]
-    results['dimunits'] = [ var['axis_units'][i] 
-                            for i in range(len(var['axis_units']))
-                            if var['axis_coords'][i] is not None ]
-    
-    sliceobj = [ 0 if ax is None else slice(None) 
-                 for ax in var['axis_coords'] ]
-    results['data'] = var['data'][sliceobj]
-    results['varname'] = var['title']
-    return results
-{% endhighlightscroll %}
-
-
-Here I used a function that tries to associate axis type (T/X/Y/Z) to a dimension by guessing from the dimension units.
-
-{% highlightscroll python %}
 def _assignCAxis_(dimunit):
     ''' 
     Assign cartesian_axis (T/Z/Y/X) to the axis with identifiable axis units.
@@ -356,15 +258,44 @@ def _assignCAxis_(dimunit):
     invaxunits = { unit.lower():ax for ax,units in conventions.items() for unit in units }
     return invaxunits.get(dimunit.lower(),None)
 
-{% endhighlightscroll %}
+def Fer2Num(var):
+    ''' Filter the dictionary returned by pyferret.getdata
+    PyFerret usually returns data with extra singlet dimension
+    Need to filter those
+    Input:
+    var       - a dictionary returned by pyferret.getdata
+    Return:
+    A dictionary with the following items
+    data      - a numpy ndarray
+    varname   - the name of the variable
+    coords    - a list of numpy ndarrays for the dimensions
+    dimunits  - a list of strings, the units for the dimensions
+    dimnames  - a list of strings, the names for the dimensions
+    '''
+    import warnings as _warnings
+    import numpy
+    import pyferret
+    results = {}
+    results['coords'] = [ ax for ax in var['axis_coords']
+                         if ax is not None]
+    if var['axis_names'] is not None:
+        results['dimnames'] = [ var['axis_names'][i] 
+                                for i in range(len(var['axis_names']))
+                                if var['axis_coords'][i] is not None ]
+    results['dimunits'] = [ var['axis_units'][i] 
+                            for i in range(len(var['axis_units']))
+                            if var['axis_coords'][i] is not None ]
+    
+    sliceobj = [ 0 if ax is None else slice(None) 
+                 for ax in var['axis_coords'] ]
+    results['data'] = var['data'][sliceobj]
+    results['varname'] = var['title']
+    return results
 
 
-
-**3. Run**
-
-{% highlightscroll python %}
 if __name__ == '__main__':
     import numpy
+
     var={}
     var['data'] = numpy.arange(400.).reshape(20,20)
     var['coords'] = [ numpy.linspace(-10.,10.,20),
@@ -374,20 +305,17 @@ if __name__ == '__main__':
     ref_var['coords'] = [ numpy.linspace(-10.,10.,10),
                       numpy.linspace(100.,160.,10)]
     ref_var['dimunits'] = ['degrees_N','degrees_E']
-    result = regrid(var,ref_var,'XY')	
-{% endhighlightscroll %}
-
-
-Results:
-
-<div class="row">
-	<div class="col-xs-12 col-md-8">
-		<div class="thumbnail">
-			<img data-src="holder.js/300x200" src="/assets/images/pyferret_regrid_example.png">
-				<div class="caption">
-					Regridding example.  Succeeded!
-				</div>
-	    </div>
-	</div>
-</div>
-
+    result = regrid(var,ref_var,'XY')
+### work on my machine for making plots
+    # import util
+    # import pylab
+    # var1 = util.nc.Variable(data=var['data'],dims=[ util.nc.Dimension(data=var['coords'][i],units=var['dimunits'][i]) for i in range(len(var['coords']))],varname='var')
+    # result1 = util.nc.Variable(data=result['data'],dims=[ util.nc.Dimension(data=result['coords'][i],units=result['dimunits'][i]) for i in range(len(result['coords']))],varname='result')
+    # pylab.figure()
+    # pylab.subplot(2,1,1)
+    # util.nc.pcolor(var1,meridians=[100.,120.,140.,160.])
+    # pylab.title("Original")
+    # pylab.subplot(2,1,2)
+    # util.nc.pcolor(result1,meridians=[100.,120.,140.,160.])
+    # pylab.title("Regridded")
+    # pylab.savefig("../images/pyferret_regrid_example.png")
