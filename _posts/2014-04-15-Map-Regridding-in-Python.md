@@ -111,7 +111,7 @@ def _assignCAxis_(dimunit):
     conventions = {'T': ['second','seconds','sec','minute','minutes','min',
                         'hour','hours','h','day','days','d',
                         'month','months','mon','year','years','y'],
-                    'Z': ['bar','millibar','decibar','atm','atmosphere','pascal','Pa','hpa',
+                    'Z': ['bar','millibar','decibar','atm','atmosphere','pascal','pa','hpa',
                         'meter','m','kilometer','km','density'],
                     'Y': ['degrees_north','degree_north','degree_n','degrees_n','degreen','degreesn'],
                     'X': ['degrees_east','degree_east','degree_e','degrees_e','degreee','degreese']}
