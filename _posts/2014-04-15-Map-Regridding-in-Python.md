@@ -45,7 +45,7 @@ The computational complexity of the spherical harmonics transform is O(N^3) for 
 Implementing PyFerret for regridding
 ---
 
-**You may download the script [here](/assets/scripts/pyferret_regrid.py)**.  Below I present slightly more details for thoughts.
+**You may download the script [here](/assets/scripts/pyferret_regrid.py.txt)**.  Below I present slightly more details for thoughts.
 
 **0. Preconditions**
 
