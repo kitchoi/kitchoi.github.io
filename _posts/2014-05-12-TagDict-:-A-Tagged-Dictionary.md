@@ -9,33 +9,68 @@ It is on Github (see link above).  Please feel free to use, comment or contribut
 
 Example
 ---
-{% highlightscroll python %}
+
+**Initialise a dataset**
+
+{% highlight python %}
 data = TagDict()
 # 4 unhashable items
 data.add({'Name':'Ben'},tags=['Male','Student'])
 data.add({'Name':'Tom','Age':40},tags=['Male','Teacher'])
 data.add({'Name':'Tina','Age':30},tags=['Female','Teacher'])
 data.add({'Name':'Ann'},tags=['Female','Student'])
+{% endhighlight %}
+
+**Retrieve content using tag**
+
+{% highlight python %}
 print data["*"]                     # --> All the items
 print data['Teacher','Female']      # --> {'Age': 30, 'Name': 'Tina'}
 print data['Student']               # --> ({'Name': 'Ben'}, {'Name': 'Ann'})
-# Add one more tag for one of the items
+{% endhighlight %}
+
+**Add a tag to an item**
+
+{% highlight python %}
 data.add_tag(data['Teacher','Female'],'Mother')
 print data['Mother']                # --> {'Age': 30, 'Name': 'Tina'}
-# Remove a tag for one of the items
+{% endhighlight %}
+
+**Remove a tag from an item**
+
+{% highlight python %}
 data.remove_tag(data['Male','Student'],'Student')
 print data['Student']               # --> {'Name': 'Ann'}
-# Replace all the tags of one of the items
+{% endhighlight %}
+
+**Replace all the tags of an item**
+
+{% highlight python %}
 data.replace_tags(data['Female','Mother','Teacher'],['Human',])
 print data['Mother']                # --> ()
 print data['Human']                 # --> {'Age': 30, 'Name': 'Tina'}
-# Change the content of one of the items
+{% endhighlight %}
+
+**Change the content of an item**
+
+{% highlight python %}
 data['Human']['Age']=31
 print data['Human']                 # --> {'Age': 31, 'Name': 'Tina'}
-# Remove an item
+{% endhighlight %}
+
+**Remove an item**
+
+{% highlight python %}
 data.remove(data['Student'])
 print data['Student']               # ()
 print data['*']                     # Only 3 items now
+{% endhighlight %}
+
+**One item only**
+
+To prevent unintended change of tags, all functions that modify tags only accept one item to make sure you know which item you are modifying.
+
+{% highlight python %}
 # Updating a list of items will fail
 try:
 	data.add_tag(data['Male'],'Martian')
@@ -45,4 +80,11 @@ except KeyError:
 		data.add_tag(man,'Martian')
 print data['Martian']              # --> ({'Name': 'Ben'}, {'Age': 40, 'Name': 'Tom'})
 
-{% endhighlightscroll %}
+{% endhighlight %}
+
+
+**View all items**
+
+{% highlight python %}
+print data.view_all()  # --> (({'Name': 'Ben'}, set(['Male', 'Martian'])), ({'Age': 40, 'Name': 'Tom'}, set(['Male', 'Martian', 'Teacher'])), ({'Age': 31, 'Name': 'Tina'}, set(['Human'])))
+{% endhighlight %}
