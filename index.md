@@ -1,5 +1,6 @@
 ---
 layout: master
+title: About Me
 ---
 
 My name is **Kit** Yan Choi.  I am currently a PhD candidate at [Princeton University](http://www.princeton.edu)'s [Atmospheric and Oceanic Sciences Program](http://www.princeton.edu/aos).  I studied Physics and I like programming.  My work requires both and that's why I am here.  I am also from the Food Paradise Hong Kong.  Living abroad makes me cook the food that I would never learn how to make.
