@@ -5,8 +5,6 @@ category: programming
 
 I just made a new Python class, [TagDict](https://github.com/kitchoi/tagdict), that allows mapping an object to multiple tags and searching for objects that match a list of tags.  Previously I ran into situations in which I used nested Python dictionary (in fact, a recursive [defaultdict](https://docs.python.org/2/library/collections.html)) for my data even though the nested structure is unnecessary.  I realised it would make more sense to manage my data using tags.  But I couldn't find an existing module that I could use, so I figured I would write one myself.  Quite a fun project!
 
-It is on Github (see link above).  Please feel free to use, comment or contribute!
-
 Example
 ---
 
