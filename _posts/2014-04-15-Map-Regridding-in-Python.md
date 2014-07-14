@@ -9,7 +9,7 @@ category: programming
   <div class="col-sm-6 col-md-6">
     <div class="thumbnail">
 		<a href="/assets/images/regridding_py_lower_crop.png">
-			<img data-src="holder.js/300x200" src="/assets/images/regridding_py_lower_crop.png"></a>
+			<img width="100%" src="/assets/images/regridding_py_lower_crop.png"></a>
       <div class="caption">
         From higher resolutions (0.66 degree longitude x 0.5 degree latitude) to lower resolutions (2.66 degree longitude x 2 degree latitude)
       </div>
@@ -18,7 +18,7 @@ category: programming
   <div class="col-sm-6 col-md-6">
     <div class="thumbnail">
       <a href="/assets/images/regridding_py_higher_crop.png">
-		  <img data-src="holder.js/300x200" src="/assets/images/regridding_py_higher_crop.png"></a>
+		  <img width="100%" src="/assets/images/regridding_py_higher_crop.png"></a>
       <div class="caption">
         From lower resolutions (2.66 degree longitude x 2 degree latitude) to higher resolutions (0.33 degree longitude x 0.25 degree latitude)
       </div>

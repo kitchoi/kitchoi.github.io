@@ -15,11 +15,8 @@
 	  {% assign shortcontentsize = shortcontent | size  %}
 	  {{ shortcontent }}
 	  {% if shortcontentsize < contentsize %}
-	   <a href="{{ post.url }}">...Read more</a>
+	   <a href="{{ post.url }}">Read more</a> - <time>{{ post.date | date: "%e %B %Y" }}</time>
 	  {% endif %}
-	</p>
-	<p>
-	  in <a href='/{{ post.categories[0] }}.html'>{{ post.categories[0] | capitalize }}</a> - <time>{{ post.date | date: "%e %B %Y" }}</time>
 	</p>
 	{% endif %}
 	{% endfor %}
