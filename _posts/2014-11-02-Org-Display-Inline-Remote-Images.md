@@ -76,9 +76,9 @@ BEG and END default to the buffer boundaries."
             (when (file-exists-p file)
               (if (and (car-safe old) refresh)
                   (image-refresh (overlay-get (cdr old) 'display))
+  ;; @kychoi: These are the lines I changed
                 (progn
                   (if (org-file-remote-p file)
-  ;; @kychoi: These are the lines I changed
                       (progn
                         (setq tmpdirectory (concat org-babel-temporary-directory "/tramp" (org-file-remote-p file) (file-name-directory (org-babel-local-file-name file))))
                         (make-directory tmpdirectory t)
