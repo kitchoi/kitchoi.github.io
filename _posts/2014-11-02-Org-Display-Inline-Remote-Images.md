@@ -99,8 +99,6 @@ BEG and END default to the buffer boundaries."
 {% endhighlight %}
 
 
-I requested access to the org-mode repository (hosted on their own server) so that I can submit a patch.  But so far I have not received response that my public key is added to their server :(
-
-Hopefully this helps someone and may one day make itself into the official release.
+I am pushing this change to the org-mode repository.  But for the time being, hopefully this helps someone and may one day make itself into the official release.
 
 
