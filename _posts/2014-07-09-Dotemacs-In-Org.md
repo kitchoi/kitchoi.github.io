@@ -1,6 +1,6 @@
 ---
 layout: post
-category: programming
+category: blog
 ---
 
 As time goes, my .emacs file grows so large that I find it difficult to organise, to switch things on/off and document the references where I found solutions for certain tasks.  I decided to use Org to organise my .emacs file so that I can have emacs-lisp code and descriptions all in one file with sections.
