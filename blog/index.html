@@ -1,0 +1,46 @@
+---
+layout: master
+title: Blog
+category: blog
+---
+
+{% for post in paginator.posts %}
+<!-- {% if post.categories contains page.category %} -->
+<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+<p>
+<font color="#666666"><time>{{ post.date | date: "%e %B %Y" }}</time> </font>
+  {% assign contentsize =  post.content | strip_html | size  %}
+  {% capture shortcontent %}{{ post.content | split: '<!--start-excerpt-->' | last | split: '<!--end-excerpt-->' | first | strip_html | truncate:500 }}{% endcapture %}
+  {% assign shortcontentsize = shortcontent | size  %}
+  {{ shortcontent }}
+  {% if shortcontentsize < contentsize %}
+   <a href="{{ post.url }}">Read more</a>
+  {% endif %}
+</p>
+<!--{% endif %}-->
+{% endfor %}
+
+<nav>
+  <ul class="pager">
+  {% if paginator.previous_page %}
+  <li>
+    <a href="{{ paginator.previous_page_path }}">
+      <span aria-hidden="true">&larr;</span> Previous</a>
+  </li>
+  {% else %}
+    <li class="disabled">
+    <a href="#"><span aria-hidden="true">&larr;</span> Previous</a>
+  </li>
+  {% endif %}
+  {% if paginator.next_page %}
+  <li>
+    <a href="{{ paginator.next_page_path }}">
+      Next<span aria-hidden="true">&rarr;</span></a>
+  </li>
+  {% else %}
+  <li class="disabled">
+    <a href="#"> Next<span aria-hidden="true">&rarr;</span></a>
+  </li>
+  {% endif %}
+  </ul>
+</nav>

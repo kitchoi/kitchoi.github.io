@@ -3,9 +3,9 @@ layout: post
 category: blog
 ---
 
-Often when we need to publish a latex article with updated references/citations, we need to run pdflatex and bibtex alternately for many times.  There must be someone else who did this: write a script to repetively call these two functions.  Unlike you that you have reached this page, I spent some time looking for one and decided that maybe it is quicker to write one myself.
+<!--start-excerpt-->Often when we need to publish a latex article with updated references/citations, we need to run pdflatex and bibtex alternately for many times.  There must be someone else who did this: write a script to repetively call these two functions.<!--end-excerpt-->  Unlike you that you have reached this page, I spent some time looking for one and decided that maybe it is quicker to write one myself.
 
-**Updated on Nov 3, 2014**: Indeed there is a command for running latex and bibtex multiple times all by itself. Try <code>latexmk -pdf article</code> (you may have to install latexmk first).  This program seems to have taken into account the timing of when an auxillary file is renewed.  So I would recommend <code>latexmk</code> over my ad-hoc script (seems to work though).
+**Updated on Nov 3, 2014**: Indeed there is a command for running latex and bibtex multiple times all by itself. Try <code>latexmk -pdf article</code> (you may have to install latexmk first).  This program seems to have taken into account the timing of when an auxillary file is renewed.  So if you can get latexmk installed, I would recommend it over my ad-hoc script (seems to work though).
 
 {% highlight bash %}
 #!/bin/bash

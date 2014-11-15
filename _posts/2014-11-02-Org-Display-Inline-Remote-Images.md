@@ -3,7 +3,7 @@ layout: post
 category: blog
 ---
 
-Emacs Org-mode is very powerful tool for scientific research.  You can manage your script, figures and text all in one place.  One problem I have encountered though, is that when I access an .org file with a link to an image hosted on a remote machine, I cannot display that image inline.  (I can still see the image if I click the link).
+<!--start-excerpt-->Emacs Org-mode is very powerful tool for scientific research.  You can manage your script, figures and text all in one place.  One problem I have encountered though, is that when I access an .org file with a link to an image hosted on a remote machine, I cannot display that image inline.  Here I posted a solution how you may do it.<!--end-excerpt-->
 
 In other words, in Org-mode, if I have a link like this.
 

@@ -3,7 +3,7 @@ layout: post
 category: blog
 ---
 
-The collections.defaultdict has been very useful and it saves me from having a lot of try-except blocks when dealing with dictionaries.  Singly nested dictionary can be done by `collections.defaultdict(collections.defaultdict)`.  But what about multi-layer nested dictionary?
+'<!--start-excerpt-->The collections.defaultdict has been very useful and it saves me from having a lot of try-except blocks when dealing with dictionaries.  Singly nested dictionary can be done by `collections.defaultdict(collections.defaultdict)`.  But what about multi-layer nested dictionary?<!--end-excerpt-->
 
 Essentially I want to do this:
 
