@@ -1,0 +1,40 @@
+<html>
+  <head>
+    {% include header.html %}
+  </head>
+  <body>
+
+
+	{% include menu-bar.html %}
+     <div class="container">
+	<div class="row">
+          <div id='content'  class="col-sm-9">
+ 	    {{ content }}
+	  </div>
+	  <div class="col-sm-3">
+ 	    <div>
+              <h3>Tags</h3>
+	      {% for tag in site.tags %}
+	        {% capture tag_name %}{{ tag[0] | capitalize }}{% endcapture %}
+  	        {% capture tagurl %}/{{ site.tag_dir }}/{{ tag[0] }}/{% endcapture %}
+	        <a href="{{ tagurl }}"> {{ tag_name }}</a>
+	        {% if forloop.last == false %}
+	           &middot 
+	        {% endif %}
+	      {% endfor %}
+            </div>
+	    <div>
+              <h3>Most Popular</h3>
+	      <ul> 
+  	        {% for post in site.posts %}
+ 	           {% if post.most_popular == true %}
+	           <li><a href="{{ post.url }}"> {{ post.title }}</a></li>
+	           {% endif %}
+		{% endfor %}
+	      </ul>
+            </div>
+	  </div> <!-- end col -->
+        </div> <!-- end row -->
+    </div><!-- end container -->
+</body>
+</html>

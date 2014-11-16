@@ -4,8 +4,9 @@
   </head>
   <body>
 
-     <div class="container">
+
 	{% include menu-bar.html %}
+     <div class="container">
       <div id='content'>
 	<h1>{{ page.title }}  <small>{{ page.date | date: "%e %B %Y" }}</small></h1>
 	{{ content }}

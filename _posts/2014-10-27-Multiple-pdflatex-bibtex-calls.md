@@ -1,6 +1,7 @@
 ---
 layout: post
 category: blog
+tags: latex
 ---
 
 <!--start-excerpt-->Often when we need to publish a latex article with updated references/citations, we need to run pdflatex and bibtex alternately for many times.  There must be someone else who did this: write a script to repetively call these two functions.<!--end-excerpt-->  Unlike you that you have reached this page, I spent some time looking for one and decided that maybe it is quicker to write one myself.
