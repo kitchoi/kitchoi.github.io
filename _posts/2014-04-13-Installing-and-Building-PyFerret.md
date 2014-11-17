@@ -128,8 +128,8 @@ Yes.  There is a second makefile to modify.  Again, change the following variabl
 I couldn't compile until I made the following changes.  This is likely to be a hack.  PyFerret has not crashed so far.
 
 In *~/Downloads/pyferret-1.0.0-source/fer/common/EF_mem_subsc.cmn* **and** *~/Downloads/pyferret-1.0.0-source/external_functions/ef_utility/ferret_cmn/EF_mem_subsc.cmn*
-{% highlight fortran %}
-	!EXTERNAL FERRET_EF_MEM_SUBSC                  !I commented this
+{% highlight diff %}
+-	EXTERNAL FERRET_EF_MEM_SUBSC  !Remove or comment this line
 {% endhighlight %}
 
 *Update: With pyferret-1.0.2 version, the first file is fixed but not the second file.*

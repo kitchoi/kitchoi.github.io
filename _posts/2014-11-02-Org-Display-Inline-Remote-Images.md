@@ -23,7 +23,7 @@ Solutions
 
 To display the remote image, I modify the <code>org-display-inline-images</code> function so that when it determines that the image file is a remote file, it asks tramp to copy the file to the default temporary directory (usually "/tmp" unless it is set to something else).  And to make sure that images of the same names but with different paths do not overwrite each other, the temporary directory tree imitates the remote file path.  Last, org-display-inline-images display the copied, local images inline.
 
-Here is the code.  Most of it is copied from org.el (version 8.3beta).  It is supposed to overload the original function and therefore it should be included in the .emacs file after org mode and tramp are loaded.
+Here is the code.  Most of it is copied from org.el (version 8.3beta, the function of interest is similar in the stable version 8.2.10).  It is supposed to overload the original function and therefore it should be included in the .emacs file after org mode and tramp are loaded.
 
 {% highlightscroll diff lineno %}
 --- a/lisp/org.el
