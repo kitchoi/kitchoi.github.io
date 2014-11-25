@@ -28,7 +28,7 @@ Here is the code "diff-ed" from org.el (version 8.3beta).
 {% highlightscroll diff lineno %}
 --- a/lisp/org.el
 +++ b/lisp/org.el
-@@ -19338,7 +19338,7 @@ boundaries."
+@@ -19340,7 +19340,7 @@ boundaries."
  			    (not (cdr (org-element-contents parent)))))
  		      (org-string-match-p file-extension-re
  					  (org-element-property :path link)))
@@ -37,7 +37,7 @@ Here is the code "diff-ed" from org.el (version 8.3beta).
  	       (when (file-exists-p file)
  		 (let ((width
  			;; Apply `org-image-actual-width' specifications.
-@@ -19376,10 +19376,29 @@ boundaries."
+@@ -19378,10 +19378,25 @@ boundaries."
  			     'org-image-overlay)))
  		   (if (and (car-safe old) refresh)
  		       (image-refresh (overlay-get (cdr old) 'display))
@@ -45,38 +45,34 @@ Here is the code "diff-ed" from org.el (version 8.3beta).
 -						  (and width 'imagemagick)
 -						  nil
 -						  :width width)))
-+		     (let* ((image 
-+			     (let ((newname
-+				    (if (org-file-remote-p file)
-+					(let* ((tramp-tmpdir (concat
-+							      (if (featurep 'xemacs)
-+								  (temp-directory)
-+								temporary-file-directory)
-+							      "/tramp"
-+							      (org-file-remote-p file)
-+							      (file-name-directory
-+							       (org-babel-local-file-name file))))
-+					       (newname (concat
-+							 tramp-tmpdir 
-+							 (file-name-nondirectory file))))
-+					  (make-directory tramp-tmpdir t)
-+					  (if (tramp-handle-file-newer-than-file-p file newname)
-+						(tramp-compat-copy-file file newname t t))
-+					  newname)
-+				      file)))
-+			       (create-image newname
-+					     (and width 'imagemagick)
-+					     nil
-+					     :width width))))
++		     (let ((image 
++			    (create-image (if (org-file-remote-p file)
++					      (let* ((tramp-tmpdir (concat
++								    (if (featurep 'xemacs)
++									(temp-directory)
++								      temporary-file-directory)
++								    "/tramp"
++								    (file-name-directory (expand-file-name file))))
++						     (newname (concat
++							       tramp-tmpdir 
++							       (file-name-nondirectory (expand-file-name file)))))
++						(make-directory tramp-tmpdir t)
++						(if (file-newer-than-file-p file newname)
++						    (copy-file file newname t t))
++						newname)
++					    file)
++					  (and width 'imagemagick)
++					  nil
++					  :width width)))
  		       (when image
  			 (let* ((link
  				 ;; If inline image is the description
+
 {% endhighlightscroll %}
 
 For completeness, here is the function as a whole.  It is supposed to overload the original function and therefore it should be included in the .emacs file after org mode and tramp are loaded.  New release may not be compatible.  Use with caution.
 
 {% highlightscroll lisp %}
-
 (defun org-display-inline-images (&optional include-linked refresh beg end)
   "Display inline images.
 
@@ -156,29 +152,25 @@ boundaries."
 			     'org-image-overlay)))
 		   (if (and (car-safe old) refresh)
 		       (image-refresh (overlay-get (cdr old) 'display))
-		     (let* ((image 
-			     (let ((newname
-				    (if (org-file-remote-p file)
-					(let* ((tramp-tmpdir (concat
-							      (if (featurep 'xemacs)
-								  (temp-directory)
-								temporary-file-directory)
-							      "/tramp"
-							      (org-file-remote-p file)
-							      (file-name-directory
-							       (org-babel-local-file-name file))))
-					       (newname (concat
-							 tramp-tmpdir 
-							 (file-name-nondirectory file))))
-					  (make-directory tramp-tmpdir t)
-					  (if (tramp-handle-file-newer-than-file-p file newname)
-						(tramp-compat-copy-file file newname t t))
-					  newname)
-				      file)))
-			       (create-image newname
-					     (and width 'imagemagick)
-					     nil
-					     :width width))))
+		     (let ((image 
+			    (create-image (if (org-file-remote-p file)
+					      (let* ((tramp-tmpdir (concat
+								    (if (featurep 'xemacs)
+									(temp-directory)
+								      temporary-file-directory)
+								    "/tramp"
+								    (file-name-directory (expand-file-name file))))
+						     (newname (concat
+							       tramp-tmpdir 
+							       (file-name-nondirectory (expand-file-name file)))))
+						(make-directory tramp-tmpdir t)
+						(if (file-newer-than-file-p file newname)
+						    (copy-file file newname t t))
+						newname)
+					    file)
+					  (and width 'imagemagick)
+					  nil
+					  :width width)))
 		       (when image
 			 (let* ((link
 				 ;; If inline image is the description
