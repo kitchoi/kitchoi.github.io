@@ -28,3 +28,4 @@ def nested_defaultdict():
 
 {% endhighlight %}
 
+**Update (Dec 8, 2014):** I just learned that this is called [autovivification](http://en.wikipedia.org/wiki/autovivification).  Very interesting.  The Python example there is basically the same as the one presented here.
