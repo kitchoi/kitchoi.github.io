@@ -7,8 +7,13 @@
 
 	{% include menu-bar.html %}
      <div class="container">
-      <div id='content'>
-	<h1>{{ page.title }}  <small>{{ page.date | date: "%e %B %Y" }}</small></h1>
+      <div id="content" class="entry">
+	<header class="entry-header">
+	  <hgroup>
+	  <h1 class="entry-title">{{ page.title }}</h1>
+	  <center><h3 class="entry-date">{{ page.date | date: "%e %B %Y" }}</h2></center>
+	  </hgroup>
+	</header>
 	{{ content }}
       </div>
 
