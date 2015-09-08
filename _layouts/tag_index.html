@@ -5,6 +5,6 @@ layout: post-list
 
 {% for post in site.posts %}
   {% if post.tags contains page.tag %}
-    {% include post-list.html %}
+    {% include post-excerpt.html %}
   {% endif %}
 {% endfor %}

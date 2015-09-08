@@ -30,9 +30,11 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  overflow-y: scroll;
 }
 body {
   margin: 0;
+  padding-top: 70px;
 }
 a:focus {
   outline: thin dotted;
@@ -250,7 +252,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", "Noto Sans", "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Lato","Helvetica Neue", "Noto Sans", "Lato", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
   color: #000000;
@@ -679,8 +681,8 @@ pre code {
   clear: both;
 }
 .row {
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 .row:before,
 .row:after {
@@ -3548,8 +3550,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-collapse {
   max-height: 340px;
   overflow-x: visible;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-overflow-scrolling: touch;
@@ -3673,7 +3675,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   position: fixed;
   right: 0;
   left: 0;
-  border-width: 0 0 1px;
+  border-width: 0 0 0px;
 }
 @media (min-width: 768px) {
   .navbar-fixed-top,

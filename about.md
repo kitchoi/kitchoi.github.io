@@ -3,9 +3,37 @@ layout: master
 title: About Me
 ---
 
-About Me
+**Hi, I am Kit.**
+===
+
+
+I am experienced in
 ---
+Physical Science, Computer Programming, Statistical Analysis, Signal processing
 
-My name is **Kit** Yan Choi.  I am currently a PhD candidate at [Princeton University](http://www.princeton.edu)'s [Atmospheric and Oceanic Sciences Program](http://www.princeton.edu/aos).  I chose the subject mainly because I enjoy studying Physics and programming.  Studying climate science makes sure I do lots of these.  I am also from the Food Paradise Hong Kong.  Living abroad makes me cook the food that I would otherwise never try to make it myself.
+I earned
+---
+**PhD** in *Atmospheric and Oceanic Sciences*, **Princeton University** (2015)<br>
+**B.Sci** in *Physics*, **Chinese University of Hong Kong** (2010)
 
+I currently use
+---
+Python, Java, Emacs Lisp
 
+I have also used
+---
+Matlab, C++, Fortran, R, PHP
+
+I am interested in, professionally,
+---
+Software development 
+
+I am curious about
+---
+Neuroscience, Human biology, Economics
+
+I enjoy
+---
+Programming, Reading, Cycling and Programming (in case you are still not convinced)
+
+<br><br>
