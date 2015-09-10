@@ -60,3 +60,7 @@ kramdown:
 
 redcloth:
   hard_breaks: true
+
+collections:
+  opensource:
+    output: true

@@ -1,39 +1,27 @@
 ---
 layout: master
-title: About Me
+title: About Kit
 ---
 
-**Hi, I am Kit.**
-===
+<h3><darker>I have experience in</darker></h3>
+Physical Science, Numerical Simulation, Statistical Analysis, Signal processing
 
+<h3><darker>I earned</darker></h3>
+PhD in *Atmospheric and Oceanic Sciences*, Princeton University (2015)<br>
+B.Sci in *Physics*, Chinese University of Hong Kong (2010)
 
-I am experienced in
----
-Physical Science, Computer Programming, Statistical Analysis, Signal processing
+<h3><darker>I currently use</darker></h3>
+Python, Java, Emacs Lisp, Git
 
-I earned
----
-**PhD** in *Atmospheric and Oceanic Sciences*, **Princeton University** (2015)<br>
-**B.Sci** in *Physics*, **Chinese University of Hong Kong** (2010)
+<h3><darker>I also played with</darker></h3>
+C++, Fortran, R, PHP, Matlab, LaTeX, Jekyll, Markdown, LabView, SolidWork
 
-I currently use
----
-Python, Java, Emacs Lisp
+<h3><darker>Now I want a job in</darker></h3>
+Software development
 
-I have also used
----
-Matlab, C++, Fortran, R, PHP
+<h3><darker>I am curious about</darker></h3>
+Physics, Neuroscience, Human biology, Economics
 
-I am interested in, professionally,
----
-Software development 
-
-I am curious about
----
-Neuroscience, Human biology, Economics
-
-I enjoy
----
+<h3><darker>I enjoy</darker></h3>
 Programming, Reading, Cycling and Programming (in case you are still not convinced)
 
-<br><br>

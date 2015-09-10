@@ -6,7 +6,7 @@
      &middot <a href="{{ tagurl }}"> {{ tag | capitalize }}  </a>
 {% endfor %}
 </font></p>
-<p>
+<p class="break-word">
   {% assign contentsize =  post.content | strip_html | size  %}
   {% capture shortcontent %}{{ post.content | split: '<!--start-excerpt-->' | last | split: '<!--end-excerpt-->' | first | strip_html | truncate:500 }}{% endcapture %}
   {% assign shortcontentsize = shortcontent | size  %}
