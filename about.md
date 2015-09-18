@@ -3,6 +3,13 @@ layout: master
 title: About Kit
 ---
 
+<h3><darker>Find me at</darker></h3>
+Github: [kitchoi](http://www.github.com/kitchoi)
+
+LinkedIn: [kityanchoi](https://www.linkedin.com/in/kityanchoi)
+
+Email: kit [at] kychoi.org
+
 <h3><darker>I have experience in</darker></h3>
 Physical Science, Numerical Simulation, Statistical Analysis, Signal processing
 
@@ -24,4 +31,3 @@ Physics, Neuroscience, Human biology, Economics
 
 <h3><darker>I enjoy</darker></h3>
 Programming, Reading, Cycling and Programming (in case you are still not convinced)
-
