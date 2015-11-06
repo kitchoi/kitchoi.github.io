@@ -105,6 +105,7 @@ If you are using other operating systems such as Ubuntu, the packages names can 
 **3. Modify ~/Downloads/pyferret-1.0.0-source/site_specific.mk**
 
 Depending on your setup and preferences, change the followings:
+
 - DIR_PREFIX 	    = $(HOME)/Downloads/pyferret-1.0.0-source
 - BUILDTYPE	        = x86_64-linux
 - PYTHON_EXE	    = python2.7
