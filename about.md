@@ -3,7 +3,7 @@ layout: master
 title: About Kit
 ---
 
-<h3><darker>Find me at</darker></h3>
+<h3><darker>Find me</darker></h3>
 Github: [kitchoi](http://www.github.com/kitchoi)
 
 LinkedIn: [kityanchoi](https://www.linkedin.com/in/kityanchoi)
@@ -22,9 +22,6 @@ Python, Java, Emacs Lisp, Git
 
 <h3><darker>I also played with</darker></h3>
 C++, Fortran, R, PHP, Matlab, LaTeX, Jekyll, Markdown, LabView, SolidWork
-
-<h3><darker>Now I want a job in</darker></h3>
-Software development
 
 <h3><darker>I am curious about</darker></h3>
 Physics, Neuroscience, Human biology, Economics
