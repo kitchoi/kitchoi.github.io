@@ -1,9 +1,9 @@
 ---
 layout: post
-title: ENSO Diagnostic Tool 
+title: ENSO Diagnostic Tool
 short_summary: A Python library for statistically analysing El Nino Southern Oscillation
 name: ENSO_lib
-doc_page: /ENSO_lib_doc
+doc_page: https://kychoi.org/ENSO_lib_doc
 image: /assets/images/ENSO_lib_banner.png
 source: http://www.github.com/kitchoi/ENSO_lib
 ---

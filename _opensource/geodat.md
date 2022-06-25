@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Geophysical Data Analysis Tool 
+title: Geophysical Data Analysis Tool
 short_summary: A Python library for handling NetCDF files, variables and dimensions efficiently.
 name: geodat
 image: /assets/images/geodat_doc_banner.png
-doc_page: /geodat_doc
+doc_page: https://kychoi.org/geodat_doc
 source: http://www.github.com/kitchoi/geodat
 ---
 
