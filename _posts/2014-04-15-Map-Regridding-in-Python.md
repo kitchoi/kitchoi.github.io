@@ -2,7 +2,6 @@
 layout: post
 category: blog
 tags: python
-most_popular: true
 ---
 
 <!--start-excerpt-->My goal here is to regrid geographical data onto another lat-lon grid.  Any library or module needed will be unloaded after the process.  I have tested PyFerret and the Python spherical harmonic module (hereafter PySpHarm) and presented here how to implement PyFerret for regridding purpose. <!--end-excerpt-->  In most cases, both PyFerret and the Python and PySpHarm do a pretty good job regridding geographical 2D data and preserve area averages.  Here are examples going from higher resolutions to lower resolutions and vice versa.
@@ -103,7 +102,7 @@ I also included a function <code>__assignCAxis__</code> that guesses the dimensi
 
 {% highlight python %}
 def _assignCAxis_(dimunit):
-    ''' 
+    '''
     Assign cartesian_axis (T/Z/Y/X) to the axis with identifiable axis units.
     Axes without identifiable units will be set to None
     Input: unit - a string
@@ -138,7 +137,7 @@ if __name__ == '__main__':
     ref_var['coords'] = [ numpy.linspace(-10.,10.,10),
                       numpy.linspace(100.,160.,10)]
     ref_var['dimunits'] = ['degrees_N','degrees_E']
-    result = regrid(var,ref_var,'XY')	
+    result = regrid(var,ref_var,'XY')
 {% endhighlight %}
 
 

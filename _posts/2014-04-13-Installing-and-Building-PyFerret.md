@@ -2,7 +2,6 @@
 layout: post
 category: blog
 tags: python
-most_popular: true
 ---
 
 I can use NumPy and SciPy for most of the tasks in my work, except for regridding.  Writing my own regridding function is tedious and time-consuming and I would likely make mistakes that can be avoided by using existing packages.  My first work-around was to use the [Python spherical harmonic transform module](https://code.google.com/p/pyspharm/) since it is a python package that is pretty easy to install and to use.  It has served me well until at certain point the Gibbs oscillations innate to the transformation starts to hamper the quality of my analysis. <!--start-excerpt-->
