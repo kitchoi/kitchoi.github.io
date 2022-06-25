@@ -25,7 +25,7 @@ To display the remote image, I modify the <code>org-display-inline-images</code>
 
 Here is the code "diff-ed" from org.el (version 8.3beta).
 
-{% highlightscroll diff lineno %}
+{% highlight diff lineno %}
 --- a/lisp/org.el
 +++ b/lisp/org.el
 @@ -19340,7 +19340,7 @@ boundaries."
@@ -68,11 +68,11 @@ Here is the code "diff-ed" from org.el (version 8.3beta).
  			 (let* ((link
  				 ;; If inline image is the description
 
-{% endhighlightscroll %}
+{% endhighlight %}
 
 For completeness, here is the function as a whole.  It is supposed to overload the original function and therefore it should be included in the .emacs file after org mode and tramp are loaded.  New release may not be compatible.  Use with caution.
 
-{% highlightscroll lisp %}
+{% highlight lisp %}
 (defun org-display-inline-images (&optional include-linked refresh beg end)
   "Display inline images.
 
@@ -197,7 +197,7 @@ boundaries."
 			    (list 'org-display-inline-remove-overlay))
 			   (push ov org-inline-image-overlays)))))))))))))))
 
-{% endhighlightscroll %}
+{% endhighlight %}
 
 I am pushing my work to the org-mode repository.  But for the time being, hopefully this helps someone and may one day make itself into the official release.
 
