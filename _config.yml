@@ -7,7 +7,6 @@ future:      true
 show_drafts: nil
 limit_posts: 0
 highlighter: pygments
-relative_permalinks: true
 
 permalink:     date
 paginate:      6
